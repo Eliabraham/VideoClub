@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContactController as contacto;
+use App\Http\Controllers\CustomerController as cliente;
+use App\Http\Controllers\MovieController as pelicula;
+use App\Http\Controllers\RentController as renta;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
