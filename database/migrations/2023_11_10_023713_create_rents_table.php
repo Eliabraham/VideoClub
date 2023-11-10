@@ -15,24 +15,24 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('movie_id');
-            $table->date('rental_date');//dia de renta
-            $table->date('return_date'); // dia acordado de devolucion
-            $table->date('real_return_date'); // dia real de devolucion
-            $table->float('amount_paid'); // monto a pagar
-            $table->float('discount'); //descuento
-            $table->string('discount_concept',50); //concepto de descuento
-            $table->string('return_status',50); // estado de devolucion
-            $table->string('status',50); // estado de devolucion
-            $table->string('notes',150); // observacion
+            $table->date('rental_date');
+            $table->date('return_date'); 
+            $table->date('real_return_date'); 
+            $table->float('amount_paid_daily'); 
+            $table->float('discount'); 
+            $table->string('discount_concept',50); 
+            $table->string('return_status',50); 
+            $table->string('status',50); 
+            $table->string('notes',150); 
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('movie_id')->references('id')->on('movies')->onUpdate('cascade')->onDelete('cascade');
         });
     }
-
+    
     /**
-     * Reverse the migrations.
-     */
+    * Reverse the migrations.
+    */
     public function down(): void
     {
         Schema::dropIfExists('rents');
