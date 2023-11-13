@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\File;
     use App\Models\Movie as peli;
     
     class MovieController extends Controller
@@ -25,7 +26,12 @@
         }
         public function update(Request $request){
             $peli=peli::find($request->id);
-            $this->igualar($peli,$request);
+            $fn="";
+            if($request->poster){
+                $this->eliminar_poster($peli->poster);
+                $fn  = $this->mposter($request);
+            }
+            $this->igualar($peli,$request,$fn);
             return redirect()->route('pelicula.lista')->with('success','INSERCION SATISFACTORIA');
         }
         public function show(Request $request){
@@ -33,16 +39,23 @@
             return view ('movie.show',['pelicula'=>$pelicula]);
         }
         public function destroy(request $request){
-            $pelicula = peli::find($request->id); 
-            $pelicula->delete(); 
+            $pelicula = peli::find($request->id);
+            $this->eliminar_poster($pelicula->poster);
+            $pelicula->delete();
             return redirect()->route('pelicula.lista')->with('danger','pelicula borrada');
         }
         public function mposter($request){
             $archivo = $request->file('poster');
             $extencion = $archivo->extension();
-            $filename=$request->name.$request->genre.$request->director.".".$extencion;
-            $request->file('poster')->move(public_path('/img/poster/'), $filename);
+            $filename=time().$request->poster->getfilename().".".$extencion;
+            $archivo->move(public_path('/img/poster/'),$filename);
             return($filename);
+        }   
+        public function eliminar_poster($poster){
+            $rutaArchivo = 'img/poster/'.$poster;
+            if (File::exists($rutaArchivo)) {
+                File::delete($rutaArchivo);
+            }
         }
         public function igualar($peli,$request,$fn){
             $peli->name=$request->name;
@@ -50,7 +63,7 @@
             $peli->director=$request->director;
             $peli->genre=$request->genre;
             $peli->classification=$request->classification;
-            $peli->poster=$fn;
+            if($fn!=""){$peli->poster=$fn;}
             $peli->synopsis=$request->synopsis;
             $peli->status=$request->status;
             $peli->existence=$request->existence;

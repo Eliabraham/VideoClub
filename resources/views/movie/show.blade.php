@@ -34,6 +34,7 @@
         {{$pelicula->synopsis}}
     </div>
     <div class="form-group col-10 d-inline-block"> 
+        {{ $pelicula->poster }}
         <img style="max-width: 900px" src="{{ '/img/poster/'.$pelicula->poster }}" />
     </div>
 

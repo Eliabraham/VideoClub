@@ -1,7 +1,7 @@
 @extends('_layout.master')
 @section('titulo','EDITAR PELICULA EXISTENTE EN EL CATALOGO')
 @section('contenido')
-    <form action="{{ route('pelicula.update',['id'=>$pelicula->id]) }}" class="col-12" method="post">
+    <form action="{{ route('pelicula.update',['id'=>$pelicula->id]) }}" enctype="multipart/form-data" class="col-12" method="post">
         @method('put')
         @include('movie._layout.data')
         <br/>
