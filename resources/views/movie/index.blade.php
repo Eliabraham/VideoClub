@@ -5,7 +5,7 @@
 @endsection
 @section('contenido')
     @forelse($peliculas as $pelicula)
-        <div class="col-4">
+        <div class="col-4 mt-4">
             <div class="card">
                 <h5 class="card-title">{{ $pelicula->name }}</h5> 
                 <div class="card-body">
@@ -18,7 +18,7 @@
                     </p>
                     <a class="btn btn-primary" style="display:inline-block" href="{{route('pelicula.edit',['id'=>$pelicula->id])}}"> <i class="fa fa-edit"></i></a>
                     <a class="btn btn-success" style="display:inline-block" href="{{route('pelicula.show',['id'=>$pelicula->id])}}"><i class="fa fa-eye"></i></a>
-                    <form method="post" action="{{route('pelicula.destroy',$pelicula->id)}}" style="display:inline-block">
+                    <form method="post" action="{{route('pelicula.destroy',$pelicula->id)}}" class="d-inline-block">
                         @csrf
                         @method('delete')
                         <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>

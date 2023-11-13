@@ -1,0 +1,37 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    /*align-items: center;
+    justify-content: center;*/
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.inputImagen {
+    display: none;
+}
+
+.imagenPreview {
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.selector_imagen {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #3490dc;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.selector_imagen:hover {
+    background-color: #2779bd;
+}
