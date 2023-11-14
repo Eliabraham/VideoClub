@@ -14,8 +14,15 @@
                         {{'STATUS: '.$cliente->status}}<br/>
                         {{'FECHA DE NACIMIENTO: '.$cliente->birth}}<br/>
                     </p>
-                    <a class="btn btn-primary "  href="{{route('cliente.edit',['id'=>$cliente->id])}}"> <i class="fa fa-edit"></i></a>
-                    <a class="btn btn-success "  href="{{route('cliente.show',['id'=>$cliente->id])}}"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-primary"  href="{{route('cliente.edit',['id'=>$cliente->id])}}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-success" href="{{route('cliente.show',['id'=>$cliente->id])}}">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a class="btn btn-success" href="{{route('contacto.new',['cliente'=>$cliente->id])}}">
+                        <i class="fas fa-phone"></i>
+                    </a>                    
                     <form class="d-inline-block" method="post" action="{{route('cliente.destroy',$cliente->id)}}">
                         @csrf
                         @method('delete')
