@@ -1,4 +1,6 @@
 <?php
     use Illuminate\Support\Facades\Route;
     use App\Livewire\Customer\Lista as cliente;
-    Route::get('/list',cliente::class)->name('clientes.index');
+    Route::prefix('/Customer')->group(function () {
+        Route::get('/lista',cliente::class)->name('clientes.index');
+    });
