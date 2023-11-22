@@ -1,4 +1,4 @@
 <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Livewire\Customer as cliente;
-    Route::get('/', function () {return view('layout.master');});
+    use App\Livewire\Customer\Lista as cliente;
+    Route::get('/',cliente::class)->name('clientes.index');
