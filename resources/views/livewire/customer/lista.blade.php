@@ -11,7 +11,7 @@
                   {{ $cliente->name}}
                   <button>ver</button>
                   <button wire:click="modificar({{ $cliente->id}})">Modificar</button>
-                  <button>eliminar</button>
+                  <button wire:click="destroy({{ $cliente->id}})">eliminar</button>
                </div>
                <div>
                   <p>

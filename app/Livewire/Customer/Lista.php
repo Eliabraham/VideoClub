@@ -58,6 +58,11 @@
             $this->db_operation="";
             $this->clientes=mod_cliente::all();
         }
+        public function destroy($id){
+            $clie = mod_cliente::find($id); 
+            $clie->delete();
+            $this->clientes=mod_cliente::all();
+        }
         public function render(){
             return view('livewire.customer.lista')
                 ->extends('layout.master')
