@@ -9,6 +9,7 @@
     </head>
     <body>
         <h1>Sistema de renta de Videos</h1>
-        @livewire('customer.lista')
+        @include('layout.menu')
+        @yield('contenido')
     </body>
 </html>

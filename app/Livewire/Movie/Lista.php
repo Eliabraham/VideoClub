@@ -15,8 +15,11 @@
         public $status;
         public $existence;
         public $availability;
+        public function mount(){
+            $this->peliculas=mod_pelicula::all();
+        }
         public function create(){
-            $this->db_operation="crear_mv";
+            $this->db_operation="create_movie";
             $this->name="";
             $this->duration="";
             $this->director="";
@@ -27,12 +30,10 @@
             $this->status="";
             $this->existence="";
             $this->availability="";
-            
-            
-            
-            
         }
         public function render(){
-            return view('livewire.movie.lista');
+            return view('livewire.movie.lista')
+                ->extends('layout.master')
+                ->section('contenido');
         }
     }

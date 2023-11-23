@@ -29,7 +29,7 @@
             $this->status       =$cliente_especifico->status;
             $this->birth        =$cliente_especifico->birth;
             $this->interest     =$cliente_especifico->interest;
-            $this->clt      =$id;
+            $this->clt          =$id;
             $this->db_operation="modificar";
         }
         public function store(){
