@@ -1,3 +1,4 @@
+<form wire:submit.prevent="create" enctype="multipart/form-data">
 @csrf
 <div class="form-group col-5 d-inline-block"> 
     <label for="name">Nombre</label>
@@ -46,17 +47,18 @@
 <div class="form-group col-3 d-inline-block">
     <label for="poster" class="selector_imagen">Seleccionar Imagen de Portada</label>
     @if(isset($pelicula))
-        <input type="file" class="inputImagen" name="poster" id="poster" wire:model="poster" onchange="previewImage(event, '#imgPreview')"/>
+        <input type="file" class="inputImagen" name="poster" id="poster" wire:model="poster" />
     @else
-        <input type="file" class="inputImagen" name="poster" id="poster" wire:model="poster" required onchange="previewImage(event, '#imgPreview')"/>
+        <input type="file" class="inputImagen" name="poster" id="poster" wire:model="poster" required />
     @endif
 </div>
-<div id="imagen">
-    <img id="imgPreview" class="imagenPreview" src="{{ isset($pelicula) ? '/img/poster/'.$pelicula->poster: '' }}" alt="Imagen Seleccionada">
-</div>
+@if($poster)
+    <img src="{{ $poster->temporaryURL() }}" alt="poster" width="450"><br>
+@endif
 @if ($db_operation=='create_movie')
     <button wire:click="store()">Aceptar</button>
 @else
     <button wire:click="{{ 'update()' }}">Modificar</button>
 @endif
 <button wire:click="$set('db_operation','')">Cancelar</button>
+</form>
