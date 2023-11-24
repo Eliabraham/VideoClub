@@ -8,14 +8,22 @@
       <div style="border:double">
          <div>
             <div>
-               {{ $pelicula}}
+               {{ $pelicula->name}}
                <button>ver</button>
                <button wire:click="modificar({{ $pelicula->id}})">Modificar</button>
                <button wire:click="destroy({{ $pelicula->id}})">eliminar</button>
             </div>
             <div>
                <p>
-                  {{ $pelicula}}
+                  {{ 'Duración:'.$pelicula->duration}} <br>
+                  {{ 'Director: '.$pelicula->director}}  <br>
+                  {{ 'Genero: '.$pelicula->genre}} <br>
+                  {{ 'Clasificacion: '.$pelicula->classification}}<br>
+                  {{ 'Resumen'.$pelicula->synopsis}}<br>
+                  {{ 'Status: '.$pelicula->status}}<br>
+                  {{ 'Existencia: '.$pelicula->existence}}<br>
+                  {{ 'Disponibilidad:'.$pelicula->availability}}<br>
+                  {{ 'Poster: '.$pelicula->poster}}<br>
                </p>
             </div>
          </div>

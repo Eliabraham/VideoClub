@@ -53,6 +53,7 @@
     @endif
 </div>
 @if($poster)
+    {{ $poster }}
     <img src="{{ $poster->temporaryURL() }}" alt="poster" width="450"><br>
 @endif
 @if ($db_operation=='create_movie')
