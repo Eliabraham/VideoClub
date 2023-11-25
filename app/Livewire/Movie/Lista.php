@@ -40,6 +40,16 @@
             $this->availability="";
         }
         public function store(){
+
+
+            /*public function mposter($request){
+                $archivo = $request->file('poster');
+                $extencion = $archivo->extension();
+                $filename=time().$request->poster->getfilename().".".$extencion;
+                $archivo->move(public_path('/img/poster/'),$filename);
+                return($filename);
+            }*/   
+
             $pelicula=new mod_pelicula;
             $pelicula->name=$this->name;
             $pelicula->duration=$this->duration;
@@ -50,9 +60,10 @@
             $pelicula->status=$this->status;
             $pelicula->existence=$this->existence;
             $pelicula->availability=$this->availability;
-            $archname=$this->poster->getClientOriginalName();		
+            $archname=time().$this->poster->getClientOriginalName();		
             $archextencion=$this->poster->extension();
-            $pelicula->poster=$archname.$archextencion;
+            $pelicula->poster=$archname;
+            $this->poster->storeAs(public_path('/img/poster/'),$pelicula->poster);
             $pelicula->save();
             $this->peliculas=mod_pelicula::all();
         }

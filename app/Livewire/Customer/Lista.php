@@ -11,8 +11,10 @@
         public $birth;
         public $interest;
         public $clt;
+        public $tituloModal;
         public function create(){
             $this->db_operation="crear";
+            $this->tituloModal="Agregar Nuevo Cliente";
             $this->name="";
             $this->identity="";
             $this->status="";
@@ -31,6 +33,7 @@
             $this->interest     =$cliente_especifico->interest;
             $this->clt          =$id;
             $this->db_operation="modificar";
+            $this->tituloModal="Modificar Cliente Existente";
         }
         public function store(){
             $clie=new mod_cliente;
