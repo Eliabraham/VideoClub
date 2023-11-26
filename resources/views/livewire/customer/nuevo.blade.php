@@ -7,11 +7,11 @@
     <div class="modalp-body row">  
         <div class="form-group col-6 d-inline-block"> 
             <label for="name">Nombre</label>
-            <input class="form-control form-control-sm" type="search" name="name" id="name" maxlength="30" autocomplete="off" required wire:model="name"/>
+            <input class="form-control form-control-sm" type="search" name="name" id="name" maxlength="30" autocomplete="off" wire:model="name"/>
         </div>
         <div class="form-group col-6 d-inline-block"> 
             <label for="duration">Documento de Identidad</label>
-            <input class="form-control form-control-sm" autocomplete="off" type="number" name="identity" id="identity" required wire:model="identity"/>
+            <input class="form-control form-control-sm" autocomplete="off" type="number" name="identity" id="identity" wire:model="identity"/>
         </div>
         <div class="form-group col-6 d-inline-block"> 
             <label for="status">Estatus</label>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group col-12 d-inline-block"> 
             <label for="interest">Intereses</label>
-            <textarea class="form-control form-control-sm" cols="30" rows="3" name="interest" id="interest" wire:model="interest" required></textarea>
+            <textarea class="form-control form-control-sm" cols="30" rows="3" name="interest" id="interest" wire:model="interest"></textarea>
         </div>
     </div>
     <div class="modalp-footer">  
