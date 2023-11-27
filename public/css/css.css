@@ -23,3 +23,14 @@
     opacity: 0.6;
     z-index: 80;
 }
+.mensajes{
+    position: fixed;
+    left: 60%;
+    width: 40%;
+    top:10%;
+    max-height: 25%;
+}
+ul,ol{
+    text-decoration: none;
+    list-style: none;
+}

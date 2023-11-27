@@ -39,5 +39,14 @@
             <button class="btn btn-sm btn-primary" wire:click="{{ 'update('.$clt.')' }}">Modificar</button>
         @endif
         <button class="btn btn-sm btn-secondary" wire:click="$set('db_operation','')">Cancelar</button>
-    </div>    
+    </div>
+    @if ($errors->any())
+        <div class="alert alert-danger mensajes">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif  
 </div>
