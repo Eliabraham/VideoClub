@@ -22,6 +22,7 @@
             $this->db_operation="crear";
             $this->tituloModal="Agregar Nuevo Cliente";
             $this->limpiar();
+            $errors="";
         }
         public function mount(){
             $this->clientes=mod_cliente::all();

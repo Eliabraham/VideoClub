@@ -6,3 +6,6 @@ function previewImage(event, querySelector){
 	objectURL = URL.createObjectURL(file);
 	$imgPreview.src = objectURL;
 }
+function close_alert(button){
+	$(button).parent().remove();
+} 

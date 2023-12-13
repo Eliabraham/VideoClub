@@ -10,6 +10,8 @@
     border-radius: 25px;
     border:double;
     padding: 12px;
+}
+.modalp-body{
     overflow-y: auto;
     overflow-x:none;
 }
@@ -29,8 +31,19 @@
     width: 40%;
     top:10%;
     max-height: 25%;
+    text-align:justify;
+    overflow: auto;
 }
 ul,ol{
     text-decoration: none;
     list-style: none;
+}
+.close-alert{
+    position:absolute;
+    top:0px;
+    left: 95%;
+    width: 5%;
+    height: 28px;
+    background-color: brown;
+
 }

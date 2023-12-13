@@ -42,6 +42,9 @@
     </div>
     @if ($errors->any())
         <div class="alert alert-danger mensajes">
+            <button class="close-alert" onclick="close_alert(this)">
+                <span aria-hidden="true"><i class="far fa-times"></i></span>
+            </button>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>

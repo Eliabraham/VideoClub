@@ -41,6 +41,7 @@
             $this->tituloModal="Agregar Pelicula Nueva";
         }
         public function store(){
+            $this->validar();
             $pelicula=new mod_pelicula;
             $pelicula->name=$this->name;
             $pelicula->duration=$this->duration;
@@ -81,23 +82,9 @@
             $this->idp              =$id;
         }
         public function update($id){
+            $this->validar();
             $pelicula=mod_pelicula::find($id);
-            if ($this->poster){
-                Storage::delete('public/img/poster/'.$pelicula->poster);
-                $archname=time().$this->poster->getClientOriginalName();
-                $pelicula->poster=$archname;
-                $this->poster->storeAs('public/img/poster',$pelicula->poster);
-            }
-            $pelicula->name=$this->name;
-            $pelicula->duration=$this->duration;
-            $pelicula->director=$this->director;
-            $pelicula->genre=$this->genre;
-            $pelicula->classification=$this->classification;
-            $pelicula->synopsis=$this->synopsis;
-            $pelicula->status=$this->status;
-            $pelicula->existence=$this->existence;
-            $pelicula->availability=$this->availability;
-            $pelicula->save();
+            $this->capturar($pelicula);
             $this->peliculas=mod_pelicula::all();
             $this->limpiar();
             $this->db_operation="";
@@ -121,5 +108,67 @@
             $this->poster="";
             $this->poster2="";
             $this->idp="";
+        }
+        public function validar(){
+            $this->validate([
+                "name"=>['required','min:10','max:60'],
+                "duration"=>['required','numeric'],
+                "director"=>['required','min:10','max:60'],
+                "genre"=>['required'],
+                "classification"=>['required',],
+                "poster"=>['required',],
+                "synopsis"=>['required','min:15','max:150'],
+                "status"=>['required',],
+                "existence"=>['required','numeric'],
+                "availability"=>['required','numeric'],
+            ], [
+                'name.required'=>'debe ingresar el nombre de la pelicula',
+                'name.min'=>'El nombre debe sera al menos de 10 caracteres de largo',
+                'name.max'=>'El nombre no debe sobrepasar los 150 caracteres',
+                'duration.required'=>'debe ingresar la duración de la pelicula',
+                'duration.numeric'=>'la duración de la pelicula debe ser un numero',
+                'director.required'=>'debe ingresar el director de la pelicula',
+                'director.min'=>'debe ingresar un director de mas de 10 caracteres',
+                'director.max'=>'debe ingresar un director de menos de 60 caracteres',
+                'genre.required'=>'debe ingresar el genero de la pelicula',
+                'classification.required'=>'debe ingresar la clasificacion de la pelicula',
+                'poster.required'=>'debe seleccionar un poster para la pelicula',
+                'synopsis.required'=>'debe ingresar un resumen de la pelicula',
+                'synopsis.min'=>'el resumen debe ser minimo de 10 caracteres',
+                'synopsis.max'=>'el maximo del resumen debe ser de 150 caracteres',
+                'status.required'=>'debe ingresar el status de la pelicula',
+                'existence.required'=>'debe ingresar la cantidad de copias que tenga',
+                'existence.numeric'=>'la cantidad debe ser escrita en numeros arabigos',
+                'availability.required'=>'debe ingresar las copias que tenga disponibles de esta pelicula',
+                'availability.numeric'=>'la disponibilidad debe ser escrita en numeros arabigos',
+            ]);
+        }
+        public function capturar($pelicula){
+            if ($this->poster){
+                Storage::delete('public/img/poster/'.$pelicula->poster);
+                $archname=time().$this->poster->getClientOriginalName();
+                $pelicula->poster=$archname;
+                $this->poster->storeAs('public/img/poster',$pelicula->poster);
+            }
+            $pelicula->name=$this->name;
+            $pelicula->duration=$this->duration;
+            $pelicula->director=$this->director;
+            $pelicula->genre=$this->genre;
+            $pelicula->classification=$this->classification;
+            $pelicula->synopsis=$this->synopsis;
+            $pelicula->status=$this->status;
+            $pelicula->existence=$this->existence;
+            $pelicula->availability=$this->availability;
+            $pelicula->save();
+        }
+        public function filtrar(){
+            $query = mod_pelicula::query();
+            if (!empty($this->fil_nombre)) {$query->where('name', 'like', '%' . $this->fil_nombre . '%');}
+            if (!empty($this->fil_duracion)) {$query->where('duration', '=<',  $this->fil_duracion );}
+            if (!empty($this->fil_status)) {$query->where('status', '=', $this->fil_status);}
+            if (!empty($this->fil_director)) {$query->where('director', 'like', '%' . $this->fil_director . '%');}
+            if (!empty($this->fil_genero)) {$query->where('genre', 'like', '%' . $this->fil_genero . '%');}
+            if (!empty($this->fil_clasificacion)) {$query->where('classification', '=', $this->fil_clasificacion);}
+            $this->pelicula = $query->get();
         }
     }
